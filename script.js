@@ -1,4 +1,10 @@
-// --- 1. Intro Door Animation Logic ---
+// --- Get Audio Elements ---
+const audio = document.getElementById('bg-music');
+const musicToggle = document.getElementById('music-toggle');
+const iconUnmuted = document.getElementById('icon-unmuted');
+const iconMuted = document.getElementById('icon-muted');
+
+// --- 1. Intro Door Animation & Play Music ---
 document.getElementById('openBtn').addEventListener('click', function() {
     
     // Fade out button
@@ -8,6 +14,11 @@ document.getElementById('openBtn').addEventListener('click', function() {
     // Open doors
     document.getElementById('leftDoor').classList.add('open');
     document.getElementById('rightDoor').classList.add('open');
+
+    // PLAY THE MUSIC
+    audio.play().catch(error => {
+        console.log("Browser prevented autoplay:", error);
+    });
 
     // Fade in main wrapper
     const mainWrapper = document.getElementById('main-wrapper');
@@ -25,7 +36,22 @@ document.getElementById('openBtn').addEventListener('click', function() {
     }, 800); 
 });
 
-// --- 2. Scroll "Rise Up" Animation Logic ---
+// --- 2. Mute / Unmute Logic ---
+musicToggle.addEventListener('click', () => {
+    if (audio.muted) {
+        // If it's muted, unmute it and show the playing icon
+        audio.muted = false;
+        iconMuted.style.display = 'none';
+        iconUnmuted.style.display = 'block';
+    } else {
+        // If it's playing, mute it and show the muted icon
+        audio.muted = true;
+        iconUnmuted.style.display = 'none';
+        iconMuted.style.display = 'block';
+    }
+});
+
+// --- 3. Scroll "Rise Up" Animation Logic ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
