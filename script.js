@@ -47,7 +47,7 @@
 
         // --- Countdown Timer Logic ---
         // Set your wedding date here (Format: Month DD, YYYY HH:MM:SS)
-        const weddingDate = new Date("Aug 28, 2026 11:00:00").getTime();
+        const weddingDate = new Date("Apr 26, 2026 12:30:00").getTime();
 
         const timerInterval = setInterval(() => {
             const now = new Date().getTime();
