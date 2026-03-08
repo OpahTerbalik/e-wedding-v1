@@ -238,3 +238,34 @@ p {
 .scroll-animate.show-animate { opacity: 1; transform: translateY(0); }
 .content-section p.scroll-animate { transition-delay: 0.1s; }
 .map-container.scroll-animate { transition-delay: 0.2s; }
+
+/* =========================================
+   7. MUSIC PLAYER CONTROLS
+   ========================================= */
+.music-btn {
+    position: fixed;
+    bottom: 80px; /* Places it safely above the bottom navigation bar */
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: #8b5a2b; /* Matches your theme */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 60; /* Keeps it above the text but below the intro doors */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1); /* Slight pop effect on hover */
+    background-color: #6b4421; /* Darkens slightly */
+}
+
+.music-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white; /* Makes the speaker icon white */
+}
