@@ -1,64 +1,612 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walimatul Urus | Wedding Invitation</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Walimatul Urus | Adam & Hawa</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #fdfbf7;
+            --cream-dark: #f4eee0;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --blush: #f8e5e5;
+            --blush-dark: #e8caca;
+            --text-main: #4a4a4a;
+            --text-light: #7a7a7a;
+            
+            --font-arabic: 'Amiri', serif;
+            --font-cursive: 'Great Vibes', cursive;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            overflow: hidden; /* Prevent scroll until opened */
+        }
+
+        /* Mobile-first Wrapper Container */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--cream);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow-x: hidden;
+        }
+
+        /* --- Welcome Screen (Cover Page) --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--blush) 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+
+        .envelope-decor {
+            width: 150px;
+            height: 150px;
+            background: url('https://images.unsplash.com/photo-1507290439931-a861b5a38200?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80') center/cover;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .welcome-title {
+            font-family: var(--font-arabic);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .welcome-names {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .btn-open {
+            background: linear-gradient(135deg, var(--gold), #b8962e);
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transition: transform 0.3s ease;
+            margin-top: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-open:hover { transform: scale(1.05); }
+
+        /* --- Floating Flowers --- */
+        .floating-flower {
+            position: absolute;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 10;
+            animation: float 10s infinite linear;
+            opacity: 0.6;
+        }
+        @keyframes float {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Main Content Sections --- */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        /* Scroll Animation Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Couple Section --- */
+        .couple-section {
+            background: url('https://www.transparenttextures.com/patterns/cream-paper.png'), var(--cream);
+        }
+        
+        .bismillah {
+            font-family: var(--font-arabic);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 20px auto;
+            max-width: 90%;
+            line-height: 1.6;
+        }
+
+        .couple-names {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin: 20px 0;
+        }
+
+        .ampersand {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--blush-dark);
+        }
+
+        /* --- Event Details --- */
+        .event-section {
+            background-color: var(--blush);
+        }
+
+        .event-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--gold-light);
+        }
+
+        .event-detail-item {
+            margin-bottom: 15px;
+        }
+        .event-detail-item h4 {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        .event-detail-item p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* --- Countdown --- */
+        .countdown-section {
+            background-color: var(--cream-dark);
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: #fff;
+            padding: 15px 5px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .time-box span {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .time-box p {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            color: var(--text-light);
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- Wishes Form --- */
+        .wishes-section {
+            background-color: var(--cream);
+            padding-bottom: 100px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--blush-dark);
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            background: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .btn-submit {
+            background-color: var(--text-main);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* --- Floating RSVP Button --- */
+        .floating-rsvp {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            width: 80%;
+            max-width: 350px;
+            justify-content: center;
+        }
+        
+        .floating-rsvp svg {
+            width: 20px; height: 20px; fill: white;
+        }
+
+        /* Music Controls */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.8);
+            border: 1px solid var(--gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
     <audio id="bg-music" loop>
         <source src="songs/bg-song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
-    <div id="cover-page" class="cover-container">
-        <div class="curtain curtain-left"></div>
-        <div class="curtain curtain-right"></div>
+    <div class="app-container">
         
-        <div class="intro-content">
-            <div class="icon-ring">
-                <i class="fa-solid fa-ring"></i>
-            </div>
-            <h1 class="bismillah">﷽</h1>
-            <p class="subtitle">Walimatul Urus</p>
-            <button id="open-btn" class="press-me-btn">Open Invitation</button>
+        <div id="welcome-screen">
+            <div class="envelope-decor"></div>
+            <div class="welcome-title">وَلِيْمَةُ العُرْس</div>
+            <p style="font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light);">Walimatul Urus</p>
+            <div class="welcome-names">Adam & Hawa</div>
+            <p style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 20px;">Menjemput Dato'/Datin/Tuan/Puan/Encik/Cik hadir ke majlis kami</p>
+            <button class="btn-open" id="open-btn">Buka Kad Jemputan</button>
         </div>
-    </div>
 
-    <div id="main-page" class="main-container hidden">
-        
-        <div class="decorations">
-            <img src="images/flower-corner.png" class="flower flower-top-left" alt="Flower Decor">
-            <img src="images/flower-corner.png" class="flower flower-bottom-right" alt="Flower Decor">
+        <div class="music-btn" id="music-toggle">🎵</div>
+
+        <div id="flower-container"></div>
+
+        <section class="couple-section reveal">
+            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+            <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Assalamualaikum W.B.T</p>
             
-            <div class="bird-container">
-                <div class="bird">🕊️</div>
-                <div class="bird bird-delayed">🕊️</div>
-            </div>
-        </div>
+            <p class="quote">
+                "Dan Kami ciptakan kamu berpasang-pasangan."<br>
+                <strong>(Surah An-Naba: 8)</strong>
+            </p>
 
-        <div class="stage-section">
-            <div class="stage-background">
-                <div class="podium">
-                    <div class="couple-placeholder">
-                        <img src="images/malay-bride.png" alt="Bride and Groom on Stage" class="couple-img">
-                        <p class="placeholder-text">[Insert Couple Image Here]</p>
-                    </div>
+            <p style="margin-top: 30px; font-size: 0.9rem;">Dengan penuh rasa kesyukuran, kami:</p>
+            <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-top: 15px;">Keluarga Pengantin Lelaki</h3>
+            <p style="font-size: 0.9rem;">&</p>
+            <h3 style="font-family: var(--font-serif); font-size: 1.2rem;">Keluarga Pengantin Perempuan</h3>
+            
+            <p style="margin: 20px 0; font-size: 0.9rem;">Menjemput anda ke majlis perkahwinan putera dan puteri kami:</p>
+            
+            <div class="couple-names">
+                Adam<br>
+                <span class="ampersand">&</span><br>
+                Hawa
+            </div>
+        </section>
+
+        <section class="event-section reveal">
+            <h2 class="section-title">Atur Cara Majlis</h2>
+            
+            <div class="event-card">
+                <div class="event-detail-item">
+                    <h4>Tarikh</h4>
+                    <p>Sabtu, 28 Ogos 2026</p>
+                    <p style="font-size: 0.8rem; color: var(--text-light);">15 Rabiul Awal 1448H</p>
+                </div>
+                <hr style="border: none; border-top: 1px dashed var(--blush-dark); margin: 15px 0;">
+                
+                <div class="event-detail-item">
+                    <h4>Masa</h4>
+                    <p>11:00 Pagi - 4:00 Petang</p>
+                    <p style="font-size: 0.8rem; color: var(--text-light);">Ketibaan Pengantin: 1:00 Petang</p>
+                </div>
+                <hr style="border: none; border-top: 1px dashed var(--blush-dark); margin: 15px 0;">
+                
+                <div class="event-detail-item">
+                    <h4>Lokasi</h4>
+                    <p>Dewan Perdana, Kuala Lumpur</p>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x31cc3628bb8bd8eb%3A0xc36ec2af019b8832!2sKuala%20Lumpur%2C%20Federal%20Territory%20of%20Kuala%20Lumpur!5e0!3m2!1sen!2smy!4v1700000000000!5m2!1sen!2smy" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
+        </section>
+
+        <section class="countdown-section reveal">
+            <h2 class="section-title">Menghitung Hari</h2>
+            <p>Menantikan detik bahagia yang akan tiba</p>
             
-            <div class="wedding-details">
-                <h2>Ahmad & Fatimah</h2>
-                <p>Are getting married</p>
-                <p class="date">Saturday, 25 December 2026</p>
+            <div class="timer-grid">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p>Hari</p>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p>Jam</p>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p>Minit</p>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p>Saat</p>
+                </div>
             </div>
-        </div>
-        
+        </section>
+
+        <section class="gallery-section reveal">
+            <h2 class="section-title">Galeri Memori</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gallery" class="gallery-item">
+            </div>
+        </section>
+
+        <section class="wishes-section reveal">
+            <h2 class="section-title">Ucapan Tetamu</h2>
+            <p style="margin-bottom: 20px;">Tinggalkan doa dan ucapan buat kami.</p>
+            
+            <form id="wishes-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="4" placeholder="Taip ucapan anda di sini..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Hantar Ucapan</button>
+            </form>
+        </section>
+
+        <a href="https://wa.me/60123456789?text=Assalamualaikum.%20Saya%20ingin%20sahkan%20kehadiran%20ke%20majlis%20Adam%20%26%20Hawa." class="floating-rsvp" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+            </svg>
+            RSVP WhatsApp
+        </a>
+
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // --- Envelope / Cover Logic ---
+        const openBtn = document.getElementById('open-btn');
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        let isMusicPlaying = false;
+
+        openBtn.addEventListener('click', () => {
+            // Hide Cover
+            welcomeScreen.classList.add('hidden');
+            // Enable Scrolling
+            document.body.style.overflow = 'auto';
+            // Play Music
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+            }).catch((e) => console.log("Audio autoplay prevented"));
+            
+            // Generate Floating Flowers once opened
+            createFlowers();
+        });
+
+        // --- Music Toggle Logic ---
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerText = '🔇';
+            } else {
+                bgMusic.play();
+                musicToggle.innerText = '🎵';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- Countdown Timer Logic ---
+        // Set your wedding date here (Format: Month DD, YYYY HH:MM:SS)
+        const weddingDate = new Date("Aug 28, 2026 11:00:00").getTime();
+
+        const timerInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
+
+        // --- Floating Flowers Generator ---
+        function createFlowers() {
+            const container = document.getElementById('flower-container');
+            const flowerEmojis = ['🌸', '✨', '🤍', '🍃'];
+            
+            setInterval(() => {
+                const flower = document.createElement('div');
+                flower.classList.add('floating-flower');
+                flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+                
+                // Random position and size
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                
+                // Random animation duration
+                flower.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                
+                container.appendChild(flower);
+                
+                // Remove from DOM after animation completes
+                setTimeout(() => {
+                    flower.remove();
+                }, 13000);
+            }, 800); // Generate a new element every 800ms
+        }
+
+        // --- Prevent Form Submission Reload ---
+        document.getElementById('wishes-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih atas ucapan anda!');
+            e.target.reset();
+        });
+    </script>
 </body>
 </html>

@@ -10,27 +10,29 @@ document.addEventListener("DOMContentLoaded", () => {
     openBtn.addEventListener("click", () => {
         // 1. Play the background music
         bgMusic.play().catch(error => {
-            console.log("Audio autoplay was prevented by browser. User interaction should fix this.", error);
+            console.log("Audio autoplay prevented. Interaction needed.", error);
         });
 
         // 2. Open the curtains
         curtainLeft.classList.add("open");
         curtainRight.classList.add("open");
 
-        // 3. Fade out the "press me" button and intro content
+        // 3. Fade out the center content
         introContent.classList.add("fade-out");
 
-        // 4. Remove 'hidden' from main page to allow DOM rendering, then trigger the animation
+        // 4. Reveal the main page to start the slow zoom and fade
         mainPage.classList.remove("hidden");
         
-        // Small delay to ensure the browser registers the display change before animating
+        // Slight delay to ensure the CSS transition registers
         setTimeout(() => {
             mainPage.classList.add("visible");
+            // Allow scrolling again once the intro is gone
+            document.body.style.overflowY = "auto"; 
         }, 50);
 
-        // Optional: remove cover page from DOM entirely after animation finishes (approx 2s)
+        // 5. Remove cover page fully after animation
         setTimeout(() => {
             coverPage.style.display = 'none';
-        }, 2000);
+        }, 2500);
     });
 });

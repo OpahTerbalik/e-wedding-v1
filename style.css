@@ -1,22 +1,22 @@
-/* Color Palette & Base Variables */
+/* Color Palette */
 :root {
     --cream: #FFFDD0;
     --gold: #D4AF37;
-    --blush-pink: #FEC5E5;
-    --dark-green: #2C4C3B; /* For text contrast */
+    --blush-pink: #F4C2C2;
+    --rose-gold: #B76E79;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Georgia', serif; /* Elegant serif font */
+    font-family: 'Georgia', serif;
 }
 
 body {
     background-color: var(--cream);
     overflow-x: hidden;
-    color: var(--dark-green);
+    overflow-y: hidden; /* Prevent scrolling during animation */
 }
 
 /* =========================================
@@ -24,15 +24,13 @@ body {
    ========================================= */
 .cover-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-color: #FAF6F0; 
 }
 
 .curtain {
@@ -40,17 +38,16 @@ body {
     top: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(135deg, var(--blush-pink), #f8e1ec);
-    border-right: 2px solid var(--gold);
-    transition: transform 2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    /* Blush pink gradient to mimic silk */
+    background: linear-gradient(135deg, #fce4ec, var(--blush-pink), #f8bbd0);
+    transition: transform 2.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     z-index: 101;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
-.curtain-left { left: 0; border-right: 3px solid var(--gold); }
-.curtain-right { right: 0; border-left: 3px solid var(--gold); }
+.curtain-left { left: 0; border-right: 4px solid var(--gold); }
+.curtain-right { right: 0; border-left: 4px solid var(--gold); }
 
-/* Classes added via JS */
 .curtain-left.open { transform: translateX(-100%); }
 .curtain-right.open { transform: translateX(100%); }
 
@@ -66,36 +63,34 @@ body {
     pointer-events: none;
 }
 
-.icon-ring {
-    font-size: 3rem;
-    color: var(--gold);
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
+.medallion {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--cream) 40%, #fcf5e3 100%);
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+    animation: pulse 2s infinite alternate;
 }
 
-.bismillah {
+.medallion i {
     font-size: 2.5rem;
     color: var(--gold);
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: var(--dark-green);
 }
 
 .press-me-btn {
-    padding: 12px 30px;
-    background-color: var(--gold);
-    color: #fff;
+    padding: 10px 25px;
+    background: transparent;
+    color: var(--rose-gold);
     border: none;
-    border-radius: 30px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
-    transition: transform 0.3s ease, background 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .press-me-btn:active {
@@ -107,16 +102,23 @@ body {
    ========================================= */
 .main-container {
     position: relative;
-    width: 100%;
-    min-height: 100vh;
-    padding: 40px 20px;
+    width: 100vw;
+    height: 100vh;
+    /* IMPORTANT: Save your watercolor image as 'watercolor-bg.jpg' in the same folder */
+    background-image: url('watercolor-bg.jpg'); 
+    background-size: cover;
+    background-position: center bottom; /* Keeps the gazebo anchored at the bottom */
+    background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* Pushes the couple to the bottom */
     align-items: center;
-    /* Zoom out and fade in animation setup */
+    
+    /* Slow Zoom and Fade In Setup */
     opacity: 0;
-    transform: scale(1.1); 
-    transition: opacity 2.5s ease, transform 3s ease;
+    transform: scale(1.15); 
+    transition: opacity 2.5s ease-in, transform 4s ease-out;
 }
 
 .main-container.visible {
@@ -129,55 +131,20 @@ body {
     display: none;
 }
 
-/* Stage Elements */
+/* Stage & Couple */
 .stage-section {
-    text-align: center;
-    margin-top: 50px;
+    position: absolute;
+    bottom: 10%; /* Adjust this to align exactly with the gazebo in the image */
     width: 100%;
-    max-width: 500px;
-    background: rgba(255, 255, 255, 0.6);
-    padding: 30px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.podium {
-    width: 100%;
-    height: 250px;
-    background: linear-gradient(to top, var(--blush-pink), transparent);
-    border-bottom: 5px solid var(--gold);
-    border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.couple-placeholder {
-    width: 150px;
-    height: 200px;
-    background-color: rgba(255, 253, 208, 0.8);
-    border: 2px dashed var(--gold);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+    z-index: 10;
 }
 
 .couple-img {
-    max-width: 100%;
-    max-height: 100%;
-    display: none; /* Show this when you add your real image */
-}
-
-.wedding-details h2 {
-    color: var(--gold);
-    font-size: 2rem;
-    margin-bottom: 10px;
+    height: 250px; /* Adjust height based on your PNG */
+    width: auto;
+    filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.2)); /* Adds realism */
 }
 
 /* =========================================
@@ -186,14 +153,15 @@ body {
 .decorations {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; /* Lets clicks pass through to content */
+    pointer-events: none; 
     overflow: hidden;
+    z-index: 20;
 }
 
 .flower {
     position: absolute;
-    width: 150px; /* Adjust based on your png */
-    opacity: 0.8;
+    width: 180px; 
+    opacity: 0.9;
 }
 
 .flower-top-left { top: -20px; left: -20px; transform: rotate(15deg); }
@@ -202,34 +170,35 @@ body {
 /* Bird Animation */
 .bird-container {
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: -10%;
     width: 120%;
 }
 
 .bird {
     position: absolute;
-    font-size: 1.5rem; /* Using emoji, but you can replace with an img tag */
-    animation: flyAcross 12s linear infinite;
+    font-size: 1.8rem;
+    animation: flyAcross 14s linear infinite;
 }
 
 .bird-delayed {
-    top: 40px;
-    animation: flyAcross 15s linear infinite;
-    animation-delay: 4s;
+    top: 50px;
+    animation: flyAcross 18s linear infinite;
+    animation-delay: 6s;
 }
 
 /* =========================================
    Keyframes
    ========================================= */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
+    100% { transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
 }
 
 @keyframes flyAcross {
     0% { left: -10%; transform: scaleX(1) translateY(0); }
-    50% { transform: scaleX(1) translateY(-20px); }
+    25% { transform: scaleX(1) translateY(-15px); }
+    50% { transform: scaleX(1) translateY(10px); }
+    75% { transform: scaleX(1) translateY(-10px); }
     100% { left: 110%; transform: scaleX(1) translateY(0); }
 }
