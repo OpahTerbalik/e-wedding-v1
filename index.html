@@ -3,97 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
+    <title>Walimatul Urus | Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <body>
 
     <audio id="bg-music" loop>
         <source src="songs/bg-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
-    <div id="intro-container">
-        <div class="door left-door" id="leftDoor">
-            <div class="handle right"></div>
-        </div>
-        <div class="door right-door" id="rightDoor">
-            <div class="handle left"></div>
-        </div>
-        <button id="openBtn">Tap to Open</button>
-    </div>
-
-    <div id="main-wrapper">
+    <div id="cover-page" class="cover-container">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
         
-        <div class="content-section hero-section">
-            <div class="invitation-card scroll-animate">
-                <p class="subtitle">Together with their families</p>
-                <h1>Name 1 & Name 2</h1>
-                <p class="message">Invite you to celebrate their wedding</p>
-                
-                <div class="divider"></div>
-                
-                <p class="date">Saturday, October 24, 2026</p>
-                <p class="time">At 4:00 in the afternoon</p>
+        <div class="intro-content">
+            <div class="icon-ring">
+                <i class="fa-solid fa-ring"></i>
             </div>
-
-            <div class="scroll-indicator">
-                <p>Scroll Down</p>
-                <div class="scroll-arrow"></div>
-            </div>
+            <h1 class="bismillah">﷽</h1>
+            <p class="subtitle">Walimatul Urus</p>
+            <button id="open-btn" class="press-me-btn">Open Invitation</button>
         </div>
-
-        <div id="details-section" class="content-section">
-            <h2 class="scroll-animate">Event Details</h2>
-            <p class="scroll-animate">Reception to follow immediately after the ceremony.</p>
-            <p class="scroll-animate">Dinner, dancing, and happily ever after!</p>
-
-            <div class="map-container scroll-animate">
-                <h3>Venue Location</h3>
-                <p class="venue-name">The Grand Plaza Hotel</p>
-                <p class="venue-address">123 Wedding Boulevard, Celebration City, NY 10001</p>
-                
-                <a href="https://maps.google.com/?q=The+Grand+Plaza+Hotel" target="_blank" class="map-button">
-                    Open in Google Maps
-                </a>
-            </div>
-        </div>
-
-        <div id="rsvp-section" class="content-section">
-            <h2 class="scroll-animate">RSVP</h2>
-            <p class="scroll-animate">We would love to celebrate with you!</p>
-            <p class="scroll-animate">Please let us know if you can make it by September 1st.</p>
-        </div>
-
-        <div id="gift-section" class="content-section">
-            <h2 class="scroll-animate">Registry</h2>
-            <p class="scroll-animate">Your presence is the greatest gift of all!</p>
-            <p class="scroll-animate">If you wish to bless us with a gift, we are registered at...</p>
-        </div>
-
     </div>
-        <div id="music-toggle" class="music-btn">
-            <svg id="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+
+    <div id="main-page" class="main-container hidden">
+        
+        <div class="decorations">
+            <img src="images/flower-corner.png" class="flower flower-top-left" alt="Flower Decor">
+            <img src="images/flower-corner.png" class="flower flower-bottom-right" alt="Flower Decor">
             
-            <svg id="icon-muted" viewBox="0 0 24 24" style="display: none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.11-.31 2.15-.81 3.08-1.45L19.73 21 21 19.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            <div class="bird-container">
+                <div class="bird">🕊️</div>
+                <div class="bird bird-delayed">🕊️</div>
+            </div>
         </div>
 
-    <nav class="bottom-nav">
-        <a href="tel:+1234567890" class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            <span class="nav-text">Phone</span>
-        </a>
+        <div class="stage-section">
+            <div class="stage-background">
+                <div class="podium">
+                    <div class="couple-placeholder">
+                        <img src="images/malay-bride.png" alt="Bride and Groom on Stage" class="couple-img">
+                        <p class="placeholder-text">[Insert Couple Image Here]</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wedding-details">
+                <h2>Ahmad & Fatimah</h2>
+                <p>Are getting married</p>
+                <p class="date">Saturday, 25 December 2026</p>
+            </div>
+        </div>
         
-        <a href="#rsvp-section" class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
-            <span class="nav-text">RSVP</span>
-        </a>
-        
-        <a href="#gift-section" class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1h-4v-2h4zM9 4c.55 0 1 .45 1 1h-4c0-.55.45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76 12 7.4l1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>
-            <span class="nav-text">Gift</span>
-        </a>
-    </nav>
+    </div>
 
     <script src="script.js"></script>
 </body>

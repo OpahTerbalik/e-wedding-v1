@@ -1,66 +1,36 @@
-// --- Get Audio Elements ---
-const audio = document.getElementById('bg-music');
-const musicToggle = document.getElementById('music-toggle');
-const iconUnmuted = document.getElementById('icon-unmuted');
-const iconMuted = document.getElementById('icon-muted');
+document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById("open-btn");
+    const curtainLeft = document.querySelector(".curtain-left");
+    const curtainRight = document.querySelector(".curtain-right");
+    const introContent = document.querySelector(".intro-content");
+    const mainPage = document.getElementById("main-page");
+    const bgMusic = document.getElementById("bg-music");
+    const coverPage = document.getElementById("cover-page");
 
-// --- 1. Intro Door Animation & Play Music ---
-document.getElementById('openBtn').addEventListener('click', function() {
-    
-    // Fade out button
-    this.style.opacity = '0';
-    setTimeout(() => { this.style.display = 'none'; }, 500);
+    openBtn.addEventListener("click", () => {
+        // 1. Play the background music
+        bgMusic.play().catch(error => {
+            console.log("Audio autoplay was prevented by browser. User interaction should fix this.", error);
+        });
 
-    // Open doors
-    document.getElementById('leftDoor').classList.add('open');
-    document.getElementById('rightDoor').classList.add('open');
+        // 2. Open the curtains
+        curtainLeft.classList.add("open");
+        curtainRight.classList.add("open");
 
-    // PLAY THE MUSIC
-    audio.play().catch(error => {
-        console.log("Browser prevented autoplay:", error);
-    });
+        // 3. Fade out the "press me" button and intro content
+        introContent.classList.add("fade-out");
 
-    // Fade in main wrapper
-    const mainWrapper = document.getElementById('main-wrapper');
-    
-    setTimeout(() => {
-        mainWrapper.classList.add('visible');
+        // 4. Remove 'hidden' from main page to allow DOM rendering, then trigger the animation
+        mainPage.classList.remove("hidden");
         
-        // Remove doors completely to restore scrolling
+        // Small delay to ensure the browser registers the display change before animating
         setTimeout(() => {
-            document.getElementById('intro-container').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-            document.documentElement.style.overflow = 'auto'; 
-        }, 2000); 
+            mainPage.classList.add("visible");
+        }, 50);
 
-    }, 800); 
-});
-
-// --- 2. Mute / Unmute Logic ---
-musicToggle.addEventListener('click', () => {
-    if (audio.muted) {
-        // If it's muted, unmute it and show the playing icon
-        audio.muted = false;
-        iconMuted.style.display = 'none';
-        iconUnmuted.style.display = 'block';
-    } else {
-        // If it's playing, mute it and show the muted icon
-        audio.muted = true;
-        iconUnmuted.style.display = 'none';
-        iconMuted.style.display = 'block';
-    }
-});
-
-// --- 3. Scroll "Rise Up" Animation Logic ---
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show-animate');
-        } else {
-            entry.target.classList.remove('show-animate');
-        }
+        // Optional: remove cover page from DOM entirely after animation finishes (approx 2s)
+        setTimeout(() => {
+            coverPage.style.display = 'none';
+        }, 2000);
     });
-}, { threshold: 0.1 });
-
-const hiddenElements = document.querySelectorAll('.scroll-animate');
-hiddenElements.forEach((el) => observer.observe(el));
+});
