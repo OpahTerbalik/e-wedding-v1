@@ -119,3 +119,38 @@ document.getElementById('wishes-form').addEventListener('submit', (e) => {
     alert('Terima kasih atas doa dan ucapan anda!');
     e.target.reset();
 });
+
+// --- Modal / Popup Logic ---
+
+// Buka popup berdasarkan ID
+function openPopup(popupId) {
+    document.getElementById(popupId).classList.add('show');
+    // Halang scrolling background bila popup dibuka
+    document.body.style.overflow = 'hidden';
+}
+
+// Tutup popup berdasarkan ID
+function closePopup(popupId) {
+    document.getElementById(popupId).classList.remove('show');
+    // Benarkan kembali scrolling
+    document.body.style.overflow = 'auto';
+}
+
+// Tutup popup jika user tekan di luar kotak (background gelap)
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup-overlay')) {
+        e.target.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// --- Fungsi RSVP Popup ---
+const rsvpForm = document.getElementById('form-rsvp');
+if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Halang page reload
+        alert('Terima kasih! RSVP anda berjaya dihantar.');
+        closePopup('popup-rsvp'); // Tutup modal automatik
+        e.target.reset(); // Kosongkan form
+    });
+}
