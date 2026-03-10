@@ -13,6 +13,9 @@ openBtn.addEventListener('click', () => {
     // Re-enable scrolling
     document.body.style.overflow = 'auto';
     
+    // 👇 ADD THIS LINE RIGHT HERE to trigger the fade-in! 👇
+    document.getElementById('main-content').classList.add('visible');
+    
     // Play music
     bgMusic.play().then(() => {
         isMusicPlaying = true;
@@ -32,6 +35,20 @@ musicToggle.addEventListener('click', () => {
     }
     isMusicPlaying = !isMusicPlaying;
 });
+
+// --- Scroll Reveal Animation ---
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Adds the class to trigger the rise up animation
+            entry.target.classList.add('active');
+        } else {
+            // Removes the class when out of view so it animates again when scrolling back
+            entry.target.classList.remove('active');
+        }
+    });
+}, { threshold: 0.1 }); // triggers when 10% of the section is visible
 
 revealElements.forEach(el => revealObserver.observe(el));
 
