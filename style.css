@@ -226,12 +226,17 @@ section { padding: 60px 20px; text-align: center; position: relative; }
 .contact-box { margin-top: 20px; }
 .contact-box p { font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); }
 .btn-contact {
-    display: inline-block;
-    color: var(--gold);
+    background-color: #25D366;
+    box-shadow: 0 5px 15px rgba(56, 65, 59, 0.4);
+    border-radius: 10px;
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
     font-weight: 600;
-    text-decoration: none;
     font-size: 1.2rem;
-    margin-left: 10px;
+    margin-left: 50px;
+    text-decoration: none;
 }
 
 /* RSVP Form Popup */
@@ -257,3 +262,14 @@ section { padding: 60px 20px; text-align: center; position: relative; }
 /* Lokasi Popup */
 .map-container-popup { margin-top: 20px; }
 .map-container-popup iframe { width: 100%; border-radius: 10px; }
+
+
+
+.sincerely-section {
+    font-size: 0.8rem;
+    background-color:black;
+    color:white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+}
