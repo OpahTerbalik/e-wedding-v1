@@ -223,20 +223,45 @@ section { padding: 60px 20px; text-align: center; position: relative; }
 }
 
 /* Hubungi Popup */
-.contact-box { margin-top: 20px; }
-.contact-box p { font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); }
+/* Container for the rows */
+.contact-box {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between the Kakak and Adik rows */
+}
+
+.whatsapp-label {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+/* Flex row to align text and button */
+.contact-row {
+    display: flex;
+    justify-content: space-between; /* Pushes Label to left, Button to right */
+    align-items: center;           /* Centers them vertically */
+    padding: 0 10px;
+}
+
+.contact-row .label {
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+
 .btn-contact {
     background-color: #25D366;
-    box-shadow: 0 5px 15px rgba(56, 65, 59, 0.4);
-    border-radius: 10px;
-    padding: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    border-radius: 8px;
+    padding: 8px 15px;
     color: white;
     font-weight: 600;
-    font-size: 1.2rem;
-    margin-left: 50px;
+    font-size: 1rem;
     text-decoration: none;
+    display: inline-block;
+    min-width: 160px; /* Keeps buttons same width */
 }
 
 /* RSVP Form Popup */
