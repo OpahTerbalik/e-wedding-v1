@@ -13,11 +13,13 @@ function openInvitation() {
         container.classList.add('opened');
         
         // Autoplay background music
-        const bgMusic = document.getElementById('bgMusic');
-        if (bgMusic) {
-            // If it's a local audio file, trigger play
-            if (bgMusic.tagName === 'AUDIO') {
-                bgMusic.play().catch(err => console.log('Autoplay prevented by browser:', err));
+        const musicIframe = document.getElementById('bgMusic');
+        if (musicIframe) {
+            let src = musicIframe.src;
+            
+            // Append autoplay=1 to the URL without destroying the start=9 parameter
+            if (!src.includes('autoplay=1')) {
+                musicIframe.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
             }
         }
     }, 200);
