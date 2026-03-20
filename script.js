@@ -64,7 +64,7 @@ function closePopup() {
 
 // Countdown Logic
 function updateCountdown() {
-    const targetDate = new Date("April 26, 2026 00:00:00").getTime();
+    const targetDate = new Date("May 16, 2026 00:00:00").getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 
