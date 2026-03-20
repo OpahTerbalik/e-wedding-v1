@@ -519,17 +519,56 @@ body {
 .s-flower-1 { top: 0%; right: -10%; width: 50%; }
 .s-flower-2 { top: 15%; right: -20%; width: 60%; }
 .s-flower-3 { top: 45%; right: -25%; width: 50%; }
-.s-flower-4 { bottom:  -5%; right: 20%; width: 50%; transform: rotate(20deg);}
-.s-flower-5 { bottom: -5%; right: -20%; width: 60%; transform: rotate(-20deg);}
+.s-flower-4 { bottom:  -5%; right: 17%; width: 50%; transform: rotate(20deg); }
+.s-flower-5 { bottom: -5%; right: -20%; width: 60%; transform: rotate(-20deg); }
 
-.animate-in {
-    animation: flowerEnter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, flowerSway 4s 1.5s infinite alternate ease-in-out;
+/* Override animation for flowers 1, 2, 3 to scale in from the RIGHT edge */
+.s-flower-1.animate-in, 
+.s-flower-2.animate-in, 
+.s-flower-3.animate-in {
+    animation: fwScaleInRight 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, flowerSway 4s 1.5s infinite alternate ease-in-out;
 }
-.s-flower-1.animate-in { animation-delay: 0.1s, 1.6s; transform-origin: left top;}
-.s-flower-2.animate-in { animation-delay: 0.3s, 1.8s; transform-origin: left center;}
-.s-flower-3.animate-in { animation-delay: 0.5s, 2.0s; transform-origin: left bottom;}
-.s-flower-4.animate-in { animation-delay: 0.7s, 2.2s; transform-origin: left bottom;}
-.s-flower-5.animate-in { animation-delay: 0.9s, 2.4s; transform-origin: center bottom;}
+
+/* Flower 4 scale in from BOTTOM with its custom rotation */
+.s-flower-4.animate-in {
+    animation: fwScaleInBottomRotate20 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, fwSway20 4s 1.5s infinite alternate ease-in-out;
+}
+
+/* Flower 5 scale in from RIGHT with its custom rotation */
+.s-flower-5.animate-in {
+    animation: fwScaleInRightRotateMinus20 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, fwSwayMinus20 4s 1.5s infinite alternate ease-in-out;
+}
+
+/* Corrected animation delays: The sway animation MUST wait until the first animation finishes (1.5s) */
+.s-flower-1.animate-in { animation-delay: 0.1s, 1.6s; transform-origin: right top;}
+.s-flower-2.animate-in { animation-delay: 0.1s, 1.6s; transform-origin: right center;}
+.s-flower-3.animate-in { animation-delay: 0.3s, 1.8s; transform-origin: right bottom;}
+.s-flower-4.animate-in { animation-delay: 0.4s, 1.9s; transform-origin: right bottom;}
+.s-flower-5.animate-in { animation-delay: 0.5s, 2.0s; transform-origin: center bottom;}
+
+/* Custom animations using legacy 'transform' to ensure 100% phone compatibility */
+@keyframes fwScaleInRight {
+    from { opacity: 0; transform: translateX(80px) scale(0.5); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes fwScaleInBottomRotate20 {
+    from { opacity: 0; transform: translateY(80px) scale(0.5) rotate(20deg); }
+    to { opacity: 1; transform: translateY(0) scale(1) rotate(20deg); }
+}
+@keyframes fwSway20 {
+    0% { transform: translateY(0) scale(1) rotate(20deg); }
+    100% { transform: translateY(0) scale(1) rotate(23deg); }
+}
+
+@keyframes fwScaleInRightRotateMinus20 {
+    from { opacity: 0; transform: translateX(80px) scale(0.5) rotate(-20deg); }
+    to { opacity: 1; transform: translateX(0) scale(1) rotate(-20deg); }
+}
+@keyframes fwSwayMinus20 {
+    0% { transform: translateY(0) scale(1) rotate(-20deg); }
+    100% { transform: translateY(0) scale(1) rotate(-17deg); }
+}
 
 /* Countdown Styles */
 .countdown-wrapper {

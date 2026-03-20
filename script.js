@@ -88,23 +88,28 @@ updateCountdown();
 
 // Scroll Animation Observer
 document.addEventListener("DOMContentLoaded", () => {
+    const scrollContainer = document.querySelector('.invitation-section');
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            // Because we are now observing the parent .details-section, we animate its children
+            const animatables = entry.target.querySelectorAll('.scroll-flower, .glass-panel');
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+                animatables.forEach(el => el.classList.add('animate-in'));
             } else {
-                // Remove class when scrolling away so it re-animates on return
-                entry.target.classList.remove('animate-in');
+                animatables.forEach(el => el.classList.remove('animate-in'));
             }
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.scroll-flower, .glass-panel').forEach(el => {
-        observer.observe(el);
+    }, { 
+        root: scrollContainer,
+        threshold: 0.1 
     });
 
+    // Observe the giant static parent div, NOT the absolute positioned images!
+    const detailsSection = document.querySelector('.details-section');
+    if (detailsSection) observer.observe(detailsSection);
+
     // Observer for Hero Section (Rise up and fade out)
-    // We use thresholds 0 and 0.6 to capture when it drops out of the main view
     const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.intersectionRatio < 0.6) {
@@ -113,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 entry.target.classList.remove('fade-up-out');
             }
         });
-    }, { threshold: [0, 0.6] });
+    }, { 
+        root: scrollContainer,
+        threshold: [0, 0.6] 
+    });
 
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) heroObserver.observe(heroSection);
