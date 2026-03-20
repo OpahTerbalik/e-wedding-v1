@@ -30,7 +30,9 @@
 
         <!-- Inner Invitation Section -->
         <div class="invitation-section">
-            <!-- Left aligned flowers -->
+            
+            <div class="hero-section">
+                <!-- Left aligned flowers -->
             <img src="https://assets.invait.my/images/sentuhan-lily/1.webp" class="inner-flower flower-1" alt="lily 1">
             <img src="https://assets.invait.my/images/sentuhan-lily/2.webp" class="inner-flower flower-2" alt="lily 2">
             <img src="https://assets.invait.my/images/sentuhan-lily/3.webp" class="inner-flower flower-3" alt="lily 3">
@@ -44,8 +46,60 @@
                 <p class="date">26 . 04 . 2026</p>
                 <p class="venue">Dewan Seri Mutiara</p>
             </div>
+        </div>
 
-            <!-- Bottom Navigation -->
+        <!-- Second Section: Countdown -->
+        <div class="countdown-section">
+            <div class="countdown-wrapper">
+                <h2 class="countdown-header">COUNTING DAYS</h2>
+                <div class="countdown-timer">
+                    <div class="time-box"><span id="days">00</span><small>Days</small></div>
+                    <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
+                    <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
+                    <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Section: Details (Scrolled View) -->
+        <div class="details-section">
+            <!-- Scrolling background flowers -->
+            <img src="https://assets.invait.my/images/sentuhan-lily/s21.webp" class="scroll-flower s-flower-1" alt="lily s21">
+            <img src="https://assets.invait.my/images/sentuhan-lily/s22.webp" class="scroll-flower s-flower-2" alt="lily s22">
+            <img src="https://assets.invait.my/images/sentuhan-lily/s23.webp" class="scroll-flower s-flower-3" alt="lily s23">
+            <img src="https://assets.invait.my/images/sentuhan-lily/s24.webp" class="scroll-flower s-flower-4" alt="lily s24">
+            <img src="https://assets.invait.my/images/sentuhan-lily/s25.webp" class="scroll-flower s-flower-5" alt="lily s25">
+
+            <div class="glass-panel">
+                <p>Dengan segala hormatnya kami</p><br>
+                <p class="parent-name">Shahabuddin bin Nikmat<br><span class="ampersand">&amp;</span><br>Nazlina binti Abu Hassn</p>
+                <p class="small-text">(PIHAK PENGANTIN LELAKI)</p><br>
+                <p>bersama</p><br>
+                <p class="parent-name">Mat Zin bin Saari<br><span class="ampersand">&amp;</span><br>Azizah binti Hamad</p>
+                <p class="small-text">(PIHAK PENGANTIN PEREMPUAN)</p><br>
+                <p>Dengan penuh rasa kesyukuran,<br>kami ingin menjemput<br>/Tuan/Puan/Encik/Cik<br>ke majlis perkahwinan putera kami</p><br>
+                <h2 class="glass-names">Adam Safwan bin Shahabuddin <br><span class="ampersand">&amp;</span><br>Teh Faridah binti Mat Zin</h2>
+                
+                <div class="event-details">
+                    <p class="event-label">Date</p>
+                    <p class="event-value">26 . 04 . 2026</p>
+                    
+                    <p class="event-label">Time</p>
+                    <p class="event-value">11:30 AM &ndash; 5:00 PM</p>
+                    
+                    <p class="event-label">Venue</p>
+                    <p class="event-value">Dewan Seri Mutiara</p>
+                </div>
+                
+                <div class="glass-buttons">
+                    <a href="#" class="glass-btn" onclick="openPopup('calendar')">Save the Date</a>
+                    <a href="#" class="glass-btn" onclick="openPopup('rsvp')">RSVP</a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Closes invitation-section -->
+
+    <!-- Bottom Navigation -->
             <nav class="bottom-nav">
                 <a href="#" class="nav-item" onclick="openPopup('rsvp')">
                     <i class="fa-regular fa-envelope"></i>
@@ -72,7 +126,6 @@
                     <span>Calendar</span>
                 </a>
             </nav>
-        </div>
 
         <!-- Popup Overlay -->
         <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>

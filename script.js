@@ -61,3 +61,60 @@ function closePopup() {
     const container = document.querySelector('.card-container');
     container.classList.remove('popup-active');
 }
+
+// Countdown Logic
+function updateCountdown() {
+    const targetDate = new Date("April 26, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        const daysEl = document.getElementById("days");
+        if(daysEl) {
+            daysEl.innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+    }
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Scroll Animation Observer
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            } else {
+                // Remove class when scrolling away so it re-animates on return
+                entry.target.classList.remove('animate-in');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-flower, .glass-panel').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Observer for Hero Section (Rise up and fade out)
+    // We use thresholds 0 and 0.6 to capture when it drops out of the main view
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio < 0.6) {
+                entry.target.classList.add('fade-up-out');
+            } else {
+                entry.target.classList.remove('fade-up-out');
+            }
+        });
+    }, { threshold: [0, 0.6] });
+
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) heroObserver.observe(heroSection);
+});
