@@ -626,6 +626,29 @@ body {
     animation: contentFade 1.2s ease forwards;
 }
 
+/* Stagger cascade animation for all content inside the main details glass panel */
+.details-section .glass-panel > p,
+.details-section .glass-panel > h2,
+.details-section .glass-panel > div {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.details-section .glass-panel.animate-in > p,
+.details-section .glass-panel.animate-in > h2,
+.details-section .glass-panel.animate-in > div {
+    animation: contentFade 0.8s ease forwards;
+}
+
+.details-section .glass-panel.animate-in > p:nth-of-type(1) { animation-delay: 0.30s; }
+.details-section .glass-panel.animate-in > p:nth-of-type(2) { animation-delay: 0.45s; }
+.details-section .glass-panel.animate-in > p:nth-of-type(3) { animation-delay: 0.60s; }
+.details-section .glass-panel.animate-in > p:nth-of-type(4) { animation-delay: 0.75s; }
+.details-section .glass-panel.animate-in > p:nth-of-type(5) { animation-delay: 0.90s; }
+.details-section .glass-panel.animate-in > h2:nth-of-type(1) { animation-delay: 1.05s; }
+.details-section .glass-panel.animate-in > div.event-details { animation-delay: 1.20s; }
+.details-section .glass-panel.animate-in > div.glass-buttons { animation-delay: 1.35s; }
+
 .glass-panel p {
     font-size: 11px;
     color: #444;
@@ -737,6 +760,12 @@ body {
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.aturcara-header.animate-in {
+    animation: contentFade 0.8s ease forwards;
+    animation-delay: 0.3s;
 }
 
 .aturcara-item {
@@ -744,7 +773,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
 }
+.aturcara-item.animate-in {
+    animation: contentFade 0.8s ease forwards;
+}
+
+/* Stagger the delay based on the layout order to create a waterfall drop-in effect */
+.aturcara-item:nth-of-type(1).animate-in { animation-delay: 0.4s; }
+.aturcara-item:nth-of-type(2).animate-in { animation-delay: 0.5s; }
+.aturcara-item:nth-of-type(3).animate-in { animation-delay: 0.6s; }
+.aturcara-item:nth-of-type(4).animate-in { animation-delay: 0.7s; }
 .aturcara-item:last-child {
     margin-bottom: 0;
 }

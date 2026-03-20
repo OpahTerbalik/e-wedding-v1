@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             // Because we are now observing the parent sections, we animate their children
-            const animatables = entry.target.querySelectorAll('.scroll-flower, .glass-panel, .doa-section');
+            const animatables = entry.target.querySelectorAll('.scroll-flower, .glass-panel, .doa-section, .aturcara-header, .aturcara-item');
             if (entry.isIntersecting) {
                 animatables.forEach(el => el.classList.add('animate-in'));
             } else {
